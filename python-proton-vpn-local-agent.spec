@@ -2,6 +2,11 @@
 %define oname local-agent-rs
 %bcond_without tests
 
+# disable cargo tests on abf, each 'cargo test' is a separate compile by
+# itself which results in the builders taking an excessive/unacceptable amount
+# of time to complete package builds, they can be ran to locally check packages.
+%bcond_with cargotests
+
 # NOTE run ./cargo-vendor.sh script after obtaining new source tarball to
 # NOTE vendor all the crates for both rust packages that are in the
 # NOTE source tarball.
@@ -65,13 +70,11 @@ directory = "../vendor"
 
 EOF
 
-
 %build
 cd %{name}
 # --frozen is euivalent to using both --locked and --offline
 cargo build --release --frozen
 #mv target/release/libpython_proton_vpn_local_agent.so local_agent.so
-
 
 %install
 install -d %{buildroot}%{python_sitearch}/{proton,proton/vpn};
@@ -85,15 +88,19 @@ export CI=true
 # set pythonpath so build lib is locatable in path
 export PYTHONPATH="%{buildroot}%{python_sitearch}:${PWD}"
 
+%if %{with cargotests}
 # cargo test local_agent_rs
 cd local_agent_rs
 cargo test --frozen --all-features
 cd ..
+%endif
 
 # test python-proton-vpn-local-agent
 cd %{name}
-# crago tests
+%if %{with cargotests}
+# cargo test python-proton-vpn-local-agent
 cargo test --frozen --all-features
+%endif
 
 # python tests
 %{__python} -m pytest tests/
