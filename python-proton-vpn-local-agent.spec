@@ -26,6 +26,7 @@ BuildRequires:  rust-packaging
 %if %{with tests}
 BuildRequires:	python
 BuildRequires:	python%{pyver}dist(pytest)
+BuildRequires:	python%{pyver}dist(pytest-asyncio)
 %endif
 Requires:	proton-vpn-local-agent = %{version}-%{release}
 
