@@ -12,8 +12,8 @@
 # NOTE source tarball.
 
 Name:		python-proton-vpn-local-agent
-Version:	1.4.5
-Release:	3
+Version:	1.6.0
+Release:	1
 Source0:	https://github.com/ProtonVPN/local-agent-rs/archive/%{version}/%{oname}-%{version}.tar.gz
 Source1:    %{oname}-%{version}-vendor.tar.xz
 Summary:	Proton VPN local agent written in Rust
