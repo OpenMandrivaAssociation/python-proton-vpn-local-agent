@@ -13,7 +13,7 @@
 
 Name:		python-proton-vpn-local-agent
 Version:	1.6.0
-Release:	1
+Release:	2
 Source0:	https://github.com/ProtonVPN/local-agent-rs/archive/%{version}/%{oname}-%{version}.tar.gz
 Source1:    %{oname}-%{version}-vendor.tar.xz
 Summary:	Proton VPN local agent written in Rust
@@ -29,6 +29,7 @@ BuildRequires:	python%{pyver}dist(pytest)
 BuildRequires:	python%{pyver}dist(pytest-asyncio)
 %endif
 Requires:	proton-vpn-local-agent = %{version}-%{release}
+Provides:	python%{pyver}dist(proton-vpn-local-agent) = %{version}-%{release}
 
 %description
 
