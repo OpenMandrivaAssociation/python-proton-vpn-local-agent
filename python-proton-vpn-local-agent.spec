@@ -12,7 +12,7 @@
 # NOTE source tarball.
 
 Name:		python-proton-vpn-local-agent
-Version:	1.6.1
+Version:	1.6.3
 Release:	1
 Source0:	https://github.com/ProtonVPN/local-agent-rs/archive/%{version}/%{oname}-%{version}.tar.gz
 Source1:    %{oname}-%{version}-vendor.tar.xz
